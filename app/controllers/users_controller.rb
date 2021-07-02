@@ -13,4 +13,24 @@ class UsersController < ApplicationController
     end
   end
 
+  def index
+    users = User.all
+    render json: users
+  end
+
+  def update
+    user = User.find_by(id: params[:id])
+
+    user.name = params[:name] || user.name
+    user.email = params[:email] || user.email
+    user.password = params[:password] || user.password
+    user.password_confirmation = params[:password_confirmation] || user.password_confirmation
+    user.admin = params[:admin] || user.admin
+
+    if user.save
+      render json: user
+    else
+      render json: {error: user.errors.full_messages}, status: :unprocessable_entity
+    end
+  end
 end
