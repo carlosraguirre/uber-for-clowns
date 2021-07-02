@@ -1,3 +1,3 @@
 class BookingSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :convert_date
 end

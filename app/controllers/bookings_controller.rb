@@ -6,7 +6,7 @@ class BookingsController < ApplicationController
       length: params[:length],
       user_id: params[:user_id],
       clown_id: params[:clown_id],
-      date: params[:date],
+      date: params[:date]
     )
 
     if booking.save
@@ -14,5 +14,13 @@ class BookingsController < ApplicationController
     else
       render json: {error: booking.errors.full_messages}, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    booking = Booking.find_by(params[:id])
+
+    booking.destroy
+    json_booking = booking.as_json
+    json_booking[:message] = "you have deleted the following item"
   end
 end

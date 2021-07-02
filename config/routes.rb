@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get "/clowns" => "clowns#index"
 
   post "/bookings" => "bookings#create"
+  get "/booking" => "bookings#index"
+  delete "/bookings/:id" => "bookings#destroy"
 
 
 
