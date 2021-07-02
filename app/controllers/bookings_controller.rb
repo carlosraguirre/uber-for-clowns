@@ -6,7 +6,7 @@ class BookingsController < ApplicationController
       length: params[:length],
       user_id: params[:user_id],
       clown_id: params[:clown_id],
-      date: params[:date]
+      date: Time.now
     )
 
     if booking.save
